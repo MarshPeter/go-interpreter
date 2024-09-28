@@ -24,12 +24,24 @@ const (
 	// Keywords
 	FUNCTION = "FUNCTION"
 	LET = "LET"
-
 )
 
-type TokenTyppe string
+type TokenType string
 
 type Token struct {
 	Type TokenType
-	Literal String
+	Literal string
+}
+
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+
+	return IDENT
+}
+
+var keywords = map[string]TokenType {
+	"fn": FUNCTION,
+	"let": LET,
 }
